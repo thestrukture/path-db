@@ -19,8 +19,10 @@ console.log(path.Get("entry/1/object", function(data){
 
 	//List collection in array
 	console.log(path.Look("data/bricks",{},function(data){
-		console.log("Result :");
-		console.log(data);
+		console.log("Result 1 :");
+		console.log(data.sortKey("created"));
+		console.log("Result 2 :");
+		console.log(data.skip(1).limit(1));
 	}));
 
 }));

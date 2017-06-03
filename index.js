@@ -34,6 +34,18 @@ exports.Save = function(path, data) {
 	});
 }
 
+function dynamicSort(property) {
+    var sortOrder = 1;
+    if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+    return function (a,b) {
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
+
 exports.SaveID = function(path, data) {
   	var shell = JSON.stringify({data: data});
 
@@ -64,6 +76,55 @@ exports.Lookf = function(path, queryfunc, cb){
 		} else cb(ret);
 
 	});
+}
+
+Array.prototype.query = function(queryfunc){
+	var ret = [];
+
+	for (var i = this.length - 1; i >= 0; i--) {
+			var brick = this[i];
+			if(queryfunc(brick)) ret.push(brick);
+		};
+
+		if(ret.length == 1){
+			cb(ret[0])
+		} else cb(ret);
+
+}
+
+Array.prototype.sortKey = function(key){
+	this.sort(dynamicSort(key));
+	return this;
+}
+
+
+Array.prototype.skip = function(count){
+	count -= 1;
+	if(count > this.length || count == -1  ) return this;
+	else {
+		var newarr = [];
+		for (var i = this.length - 1; i >= 0; i--) {
+			if(i > count){
+				newarr.push(this[i]);
+			}
+		};
+		return newarr;
+	}
+}
+
+Array.prototype.limit = function(count){
+	act = 0;
+	if(count > this.length || count == -1  ) return this;
+	else {
+		var newarr = [];
+		for (var i = this.length - 1; i >= 0; i--) {
+			if(act < count){
+				act++;
+				newarr.push(this[i]);
+			}
+		};
+		return newarr;
+	}
 }
 
 exports.Look = function(path, query, cb){
