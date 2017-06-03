@@ -1,0 +1,23 @@
+{
+  "name": "path-db",
+  "version": "1.0.0",
+  "description": "NodeJS local database module.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: run `node|nodejs test.js` \" && exit 1"
+  },
+  "author": "Cheikh seck",
+  "license": "ISC",
+  "devDependencies": {
+    "bin": {
+      "cement": "./model_builder.js"
+    },
+    "cli-spinner": "^0.2.6",
+    "js-sha512": "^0.3.0",
+    "mongoid-js": "^1.1.2",
+    "prompt": "^1.0.0",
+    "sleep": "^5.1.1",
+    "sync-exec": "^0.6.2",
+    "validate-fields": "^3.7.1"
+  }
+}
