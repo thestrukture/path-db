@@ -189,7 +189,7 @@ Here is how path-db makes your `cement` models available to your NodeJS app.
 
 Initialize a brick
 
-> var brick = path.`<Brick name>`(true, false);
+> var brick = path.`<Brick name>`(property-1, property-2...);
 
 Your brick will have two extra properties : `id` : Unique item id. `created` : Date object of when this object was created.
 
